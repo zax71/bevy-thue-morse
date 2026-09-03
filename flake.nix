@@ -28,7 +28,10 @@
           mkShell {
             buildInputs = [
               # Rust dependencies
-              (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
+              (rust-bin.beta.latest.default.override {
+                extensions = [ "rust-src" ];
+                targets = [ "wasm32-unknown-unknown" ];
+              })
               pkg-config
             ]
             ++ lib.optionals (lib.strings.hasInfix "linux" system) [
@@ -48,6 +51,9 @@
               libxkbcommon
               wayland
               pkg-config
+
+              # Utility that builds rust-generated WebAssembly package
+              wasm-pack
             ];
             RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
             LD_LIBRARY_PATH = lib.makeLibraryPath [

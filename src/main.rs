@@ -15,6 +15,7 @@ use bevy::{
 
 use crate::plugins::{
     ball::{Ball, BallPlugin},
+    interface::InterfacePlugin,
     position::{PositionPlugin, RadialPosition},
 };
 
@@ -22,7 +23,7 @@ mod plugins;
 
 fn main() {
     App::new()
-        .add_plugins((DefaultPlugins, PositionPlugin, BallPlugin))
+        .add_plugins((DefaultPlugins, PositionPlugin, BallPlugin, InterfacePlugin))
         .add_systems(Startup, setup)
         .add_systems(
             FixedUpdate,
@@ -41,10 +42,8 @@ fn setup(mut commands: Commands) {
 
 fn increase_ball_1_r(mut balls: Query<(&Ball, &mut RadialPosition), With<Ball>>) {
     for (ball, mut radial_position) in &mut balls {
-        // if ball.id == 1 {
-        //     radial_position.radius += 10.0;
-        // }
-
-        radial_position.radius = (ball.id * -10) as f32;
+        if ball.id == 1 {
+            radial_position.radius += 10.0;
+        }
     }
 }
