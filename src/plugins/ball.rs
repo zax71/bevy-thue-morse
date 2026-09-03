@@ -50,7 +50,7 @@ impl Ball {
         // Ensure ID stays unique
         max_id.0 += 1;
 
-        let ball = commands.spawn((
+        let _ball = commands.spawn((
             Self { id: max_id.0 },
             RadialPosition {
                 radius: 50.0,

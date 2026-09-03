@@ -6,16 +6,13 @@ use bevy::{
         schedule::IntoScheduleConfigs,
         system::{Commands, Query},
     },
-    input::{
-        common_conditions::{input_just_pressed, input_toggle_active},
-        keyboard::KeyCode,
-    },
+    input::{common_conditions::input_just_pressed, keyboard::KeyCode},
     DefaultPlugins,
 };
 
 use crate::plugins::{
     ball::{Ball, BallPlugin},
-    interface::InterfacePlugin,
+    // interface::InterfacePlugin,
     position::{PositionPlugin, RadialPosition},
 };
 
@@ -23,7 +20,7 @@ mod plugins;
 
 fn main() {
     App::new()
-        .add_plugins((DefaultPlugins, PositionPlugin, BallPlugin, InterfacePlugin))
+        .add_plugins((DefaultPlugins, PositionPlugin, BallPlugin))
         .add_systems(Startup, setup)
         .add_systems(
             FixedUpdate,
